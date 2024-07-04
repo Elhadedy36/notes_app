@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 
 class Noteitem extends StatelessWidget {
-  const Noteitem({super.key});
-
+  const Noteitem({super.key,required this.color});
+final Color? color;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 24,bottom: 24,left: 16),
       decoration: BoxDecoration(
-        color: Color(0xffFFCD7A),
+        color: color,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
