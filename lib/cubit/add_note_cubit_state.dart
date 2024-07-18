@@ -4,7 +4,6 @@ part of 'add_note_cubit_cubit.dart';
 abstract class AddNoteCubitState {} //sealed
 
 final class AddNoteCubitInitial extends AddNoteCubitState {}
-
 final class AddNoteCubitLoading extends AddNoteCubitState {}
 
 final class AddNoteCubitSuccess extends AddNoteCubitState {}
