@@ -10,8 +10,8 @@ import 'package:notes_app/cubit/add_note_cubit_cubit.dart';
 void main ()async
 {
   await Hive.initFlutter();
-  await Hive.openBox(KNotesbox);
-  Hive.registerAdapter(NoteModelAdapter());
+    Hive.registerAdapter(NoteModelAdapter());//muste be before open box
+  await Hive.openBox<NoteModel>(KNotesbox);
   Bloc.observer = SimpleBlocObserver();
   runApp(Notes_app());
 }
@@ -23,18 +23,12 @@ class Notes_app extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: 
-      [
-        BlocProvider(create: (context)=>AddNoteCubit()),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(brightness: Brightness.dark,
-        fontFamily: 'assets/fonts/Poppins-Regular.ttf'
-        ),
-        home:const Notesview(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(brightness: Brightness.dark,
+      fontFamily: 'assets/fonts/Poppins-Regular.ttf'
       ),
+      home:const Notesview(),
     );
   }
 }

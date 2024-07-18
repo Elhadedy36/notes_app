@@ -21,7 +21,7 @@ bool isLoading = false;
      emit(AddNoteCubitSuccess());
 }  catch (e) {
   // TODO
-  AddNoteCubitFailure(e.toString());
+  emit(AddNoteCubitFailure(e.toString()));
 }
   }
 }
