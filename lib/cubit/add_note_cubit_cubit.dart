@@ -10,7 +10,7 @@ class AddNoteCubit extends Cubit<AddNoteCubitState> {
   AddNoteCubit() : super(AddNoteCubitInitial());
 
 
-
+bool isLoading = false;
   addNote(NoteModel note) async
   {
     emit(AddNoteCubitLoading());
@@ -21,7 +21,7 @@ class AddNoteCubit extends Cubit<AddNoteCubitState> {
      emit(AddNoteCubitSuccess());
 }  catch (e) {
   // TODO
-  emit(AddNoteCubitFailure(e.toString()));
+  AddNoteCubitFailure(e.toString());
 }
   }
 }
