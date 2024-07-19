@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/Models/Note_Model.dart';
 import 'package:notes_app/Widgets/CustomButton.dart';
 import 'package:notes_app/Widgets/CustomTextField.dart';
-import 'package:notes_app/cubit/add_note_cubit_cubit.dart';
+import 'package:notes_app/cubit/add%20note%20cubit/add_note_cubit_cubit.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -22,7 +22,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.only(left: 16,right: 16,bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Form(
         key: formKey,
         autovalidateMode: autoValidateMode,
