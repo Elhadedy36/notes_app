@@ -6,6 +6,7 @@ import 'package:notes_app/Models/Note_Model.dart';
 import 'package:notes_app/Widgets/Add%20note%20form.dart';
 import 'package:notes_app/Widgets/CustomButton.dart';
 import 'package:notes_app/Widgets/CustomTextField.dart';
+import 'package:notes_app/cubit/Notes%20cubit/notes_cubit.dart';
 import 'package:notes_app/cubit/add%20note%20cubit/add_note_cubit_cubit.dart';
 
 class AddNoteButtonSheet extends StatelessWidget {
@@ -23,6 +24,7 @@ class AddNoteButtonSheet extends StatelessWidget {
       }
       if(state is AddNoteCubitSuccess)
       {
+        BlocProvider.of<NotesCubit>(context).fetchAllNotes();
         Navigator.pop(context);
       }
             },
