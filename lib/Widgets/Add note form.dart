@@ -20,10 +20,14 @@ class _AddNoteFormState extends State<AddNoteForm> {
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
   String? title, subtitle;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 16,right: 16,bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Form(
         key: formKey,
         autovalidateMode: autoValidateMode,
@@ -51,22 +55,25 @@ class _AddNoteFormState extends State<AddNoteForm> {
             SizedBox(
               height: 16,
             ),
+            Color_listview(),
+            SizedBox(
+              height: 10,
+            ),
             BlocBuilder<AddNoteCubit, AddNoteCubitState>(
-              
               builder: (context, state) {
                 return CustomButton(
-                  isLoading: state is AddNoteCubitLoading? true:false,
+                  isLoading: state is AddNoteCubitLoading ? true : false,
                   onTap: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       var currentdate = DateTime.now();
-                      var formattedcurrentDate = DateFormat('mm-dd-yyyy').format(currentdate);
+                      var formattedcurrentDate =
+                          DateFormat('mm-dd-yyyy').format(currentdate);
                       var notemodel = NoteModel(
                           title: title!,
                           subtitle: subtitle!,
                           date: formattedcurrentDate,
-                          color: Colors.blue.value
-                          );
+                          color: Colors.blue.value);
                       BlocProvider.of<AddNoteCubit>(context).addNote(notemodel);
                     } else {
                       autoValidateMode = AutovalidateMode.always;
@@ -82,6 +89,68 @@ class _AddNoteFormState extends State<AddNoteForm> {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class Color_item extends StatelessWidget {
+  const Color_item({super.key, required this.color,this.onTap});
+  final Color color;
+ final void Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: CircleAvatar(
+        radius: 30,
+        backgroundColor: color,
+      ),
+    );
+  }
+}
+
+class Color_listview extends StatelessWidget {
+  Color_listview({super.key});
+    void Function()? onTap;
+  final List<Color> colors = [
+    Color(0xFFDAA520), // Goldenrod
+    Color(0xFF87CEEB), // Sky Blue
+    Color(0xFF673AB7), // Deep Purple
+    Color(0xFF191970), // Midnight Blue
+    Color(0xFFF8F8FF), // Ghost White
+    Color(0xFFDC143C), // Crimson
+    Color(0xFF808000), // Olive
+    Color(0xFF40E0D0), // Turquoise
+    Color(0xFFE6E6FA), // Lavender
+    Color(0xFFFA8072), // Salmon
+    Color(0xFF008080), // Teal
+    Color(0xFFFF7F50), // Coral
+    Color(0xFFA0522D), // Sienna
+    Color(0xFFFF00FF), // Fuchsia
+    Color(0xFF708090), // Slate Gray
+    Color(0xFF7FFF00), // Chartreuse
+    Color(0xFF800000), // Maroon
+    Color(0xFF000080), // Navy
+    Color(0xFFFFDAB9), // Peach Puff
+    Color(0xFFD2691E), // Chocolate
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        itemCount: 10,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Color_item(
+              onTap: onTap,
+              color: colors[index],
+            ),
+          );
+        },
       ),
     );
   }
