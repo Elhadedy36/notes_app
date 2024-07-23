@@ -28,7 +28,7 @@ class _NotesviewbodyState extends State<Notesviewbody> {
           SizedBox(
             height: 60,
           ),
-          CustomAppbar(Title: 'Notes',icon: Icons.search,),
+          CustomAppbar(Title: 'Notes',icon: Icon(Icons.search),),
           SizedBox(
             height: 40,
           ),

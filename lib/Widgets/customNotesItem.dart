@@ -15,7 +15,7 @@ final NoteModel notes;
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context)
         {
-          return EditNoteView();
+          return EditNoteView(note: notes,);
 
         }));
       },
